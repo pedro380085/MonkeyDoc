@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFHTTPRequestOperationManager.h"
 #define ROOT_DOMAIN @"https://heyme.co"
 
 @class AFHTTPRequestOperationManager;

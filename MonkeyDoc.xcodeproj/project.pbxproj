@@ -10,7 +10,6 @@
 		8DCC99838B28747A8807A766 /* libPods-MonkeyDoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE37BF5596C1AAE6E067A07C /* libPods-MonkeyDoc.a */; };
 		973714BE1C0E8ADB004D95D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 973714BD1C0E8ADB004D95D1 /* main.m */; };
 		973714C11C0E8ADB004D95D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 973714C01C0E8ADB004D95D1 /* AppDelegate.m */; };
-		973714C41C0E8ADB004D95D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 973714C31C0E8ADB004D95D1 /* ViewController.m */; };
 		973714C91C0E8ADB004D95D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 973714C81C0E8ADB004D95D1 /* Assets.xcassets */; };
 		973714CC1C0E8ADB004D95D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 973714CA1C0E8ADB004D95D1 /* LaunchScreen.storyboard */; };
 		97E5E3E61C0E980400E8A12C /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E5E3E51C0E980400E8A12C /* HTTPManager.m */; };
@@ -60,6 +59,10 @@
 		97E5E49A1C0F380100E8A12C /* doctors.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4971C0F380100E8A12C /* doctors.png */; };
 		97E5E49B1C0F380100E8A12C /* doctors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4981C0F380100E8A12C /* doctors@2x.png */; };
 		97E5E49C1C0F380100E8A12C /* doctors@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4991C0F380100E8A12C /* doctors@3x.png */; };
+		97E5E49F1C0F3EC400E8A12C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E5E49E1C0F3EC400E8A12C /* MainViewController.m */; };
+		97E5E4A21C0F437900E8A12C /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4A01C0F437800E8A12C /* Simplify.bundle */; };
+		97E5E4A31C0F437900E8A12C /* Simplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E5E4A11C0F437900E8A12C /* Simplify.framework */; };
+		97E5E4A71C0F43FB00E8A12C /* SIMProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E5E4A61C0F43FB00E8A12C /* SIMProductViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +71,6 @@
 		973714BD1C0E8ADB004D95D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		973714BF1C0E8ADB004D95D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		973714C01C0E8ADB004D95D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		973714C21C0E8ADB004D95D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		973714C31C0E8ADB004D95D1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		973714C81C0E8ADB004D95D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		973714CB1C0E8ADB004D95D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		973714CD1C0E8ADB004D95D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +154,12 @@
 		97E5E4971C0F380100E8A12C /* doctors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctors.png; sourceTree = "<group>"; };
 		97E5E4981C0F380100E8A12C /* doctors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doctors@2x.png"; sourceTree = "<group>"; };
 		97E5E4991C0F380100E8A12C /* doctors@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doctors@3x.png"; sourceTree = "<group>"; };
+		97E5E49D1C0F3EC400E8A12C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		97E5E49E1C0F3EC400E8A12C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		97E5E4A01C0F437800E8A12C /* Simplify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Simplify.bundle; sourceTree = "<group>"; };
+		97E5E4A11C0F437900E8A12C /* Simplify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Simplify.framework; sourceTree = "<group>"; };
+		97E5E4A51C0F43FB00E8A12C /* SIMProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMProductViewController.h; sourceTree = "<group>"; };
+		97E5E4A61C0F43FB00E8A12C /* SIMProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMProductViewController.m; sourceTree = "<group>"; };
 		BE37BF5596C1AAE6E067A07C /* libPods-MonkeyDoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MonkeyDoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7DA631E2E4BAA49448FD13 /* Pods-MonkeyDoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonkeyDoc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MonkeyDoc/Pods-MonkeyDoc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +172,7 @@
 				8DCC99838B28747A8807A766 /* libPods-MonkeyDoc.a in Frameworks */,
 				97E5E4131C0F146300E8A12C /* FBSDKCoreKit.framework in Frameworks */,
 				97E5E4141C0F146300E8A12C /* FBSDKLoginKit.framework in Frameworks */,
+				97E5E4A31C0F437900E8A12C /* Simplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +191,8 @@
 		6062D79ACCAC12933206D217 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97E5E4A01C0F437800E8A12C /* Simplify.bundle */,
+				97E5E4A11C0F437900E8A12C /* Simplify.framework */,
 				97E5E4111C0F146300E8A12C /* FBSDKCoreKit.framework */,
 				97E5E4121C0F146300E8A12C /* FBSDKLoginKit.framework */,
 				BE37BF5596C1AAE6E067A07C /* libPods-MonkeyDoc.a */,
@@ -217,14 +227,11 @@
 				97E5E4221C0F161F00E8A12C /* General */,
 				97E5E3E41C0E980400E8A12C /* HTTPManager.h */,
 				97E5E3E51C0E980400E8A12C /* HTTPManager.m */,
-				973714CA1C0E8ADB004D95D1 /* LaunchScreen.storyboard */,
 				97E5E4101C0E9EB700E8A12C /* Login */,
-				97E5E3EB1C0E98A400E8A12C /* Main.storyboard */,
 				973714F21C0E9419004D95D1 /* Medicine */,
+				97E5E4A41C0F43F000E8A12C /* Payment */,
 				973714BC1C0E8ADB004D95D1 /* Supporting Files */,
 				97E5E4511C0F269B00E8A12C /* Token */,
-				973714C21C0E8ADB004D95D1 /* ViewController.h */,
-				973714C31C0E8ADB004D95D1 /* ViewController.m */,
 			);
 			path = MonkeyDoc;
 			sourceTree = "<group>";
@@ -304,8 +311,12 @@
 			children = (
 				973714BF1C0E8ADB004D95D1 /* AppDelegate.h */,
 				973714C01C0E8ADB004D95D1 /* AppDelegate.m */,
+				97E5E3EB1C0E98A400E8A12C /* Main.storyboard */,
 				97E5E4231C0F163300E8A12C /* ColorThemeController.h */,
+				973714CA1C0E8ADB004D95D1 /* LaunchScreen.storyboard */,
 				97E5E4241C0F163300E8A12C /* ColorThemeController.m */,
+				97E5E49D1C0F3EC400E8A12C /* MainViewController.h */,
+				97E5E49E1C0F3EC400E8A12C /* MainViewController.m */,
 				97E5E4261C0F168F00E8A12C /* WrapperViewCell.h */,
 				97E5E4271C0F168F00E8A12C /* WrapperViewCell.m */,
 				97E5E4291C0F16C500E8A12C /* WrapperViewController.h */,
@@ -391,6 +402,15 @@
 			path = ETFlatBarButtonItem;
 			sourceTree = "<group>";
 		};
+		97E5E4A41C0F43F000E8A12C /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				97E5E4A51C0F43FB00E8A12C /* SIMProductViewController.h */,
+				97E5E4A61C0F43FB00E8A12C /* SIMProductViewController.m */,
+			);
+			name = Payment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,6 +482,7 @@
 				97E5E49A1C0F380100E8A12C /* doctors.png in Resources */,
 				973714C91C0E8ADB004D95D1 /* Assets.xcassets in Resources */,
 				97E5E49C1C0F380100E8A12C /* doctors@3x.png in Resources */,
+				97E5E4A21C0F437900E8A12C /* Simplify.bundle in Resources */,
 				97E5E4041C0E992500E8A12C /* Medicines-Search@3x.png in Resources */,
 				97E5E4061C0E992500E8A12C /* Medicines@3x.png in Resources */,
 				97E5E4051C0E992500E8A12C /* Medicines@2x.png in Resources */,
@@ -532,8 +553,8 @@
 				97E5E48C1C0F35F900E8A12C /* UILabel+Configuration.m in Sources */,
 				97E5E4011C0E992500E8A12C /* MedicineItemViewController.m in Sources */,
 				97E5E4921C0F35F900E8A12C /* UIViewController+Loading.m in Sources */,
+				97E5E49F1C0F3EC400E8A12C /* MainViewController.m in Sources */,
 				97E5E48E1C0F35F900E8A12C /* UITextField+Components.m in Sources */,
-				973714C41C0E8ADB004D95D1 /* ViewController.m in Sources */,
 				97E5E3FE1C0E992500E8A12C /* MedicineDataController.m in Sources */,
 				973714C11C0E8ADB004D95D1 /* AppDelegate.m in Sources */,
 				97E5E4901C0F35F900E8A12C /* UIView+Bounds.m in Sources */,
@@ -553,6 +574,7 @@
 				97E5E42B1C0F16C500E8A12C /* WrapperViewController.m in Sources */,
 				97E5E44A1C0F1D1800E8A12C /* ETFlowView.m in Sources */,
 				97E5E48D1C0F35F900E8A12C /* UIScrollView+EmptyState.m in Sources */,
+				97E5E4A71C0F43FB00E8A12C /* SIMProductViewController.m in Sources */,
 				97E5E4281C0F168F00E8A12C /* WrapperViewCell.m in Sources */,
 				97E5E48F1C0F35F900E8A12C /* UITextField+Configuration.m in Sources */,
 				97E5E4931C0F35F900E8A12C /* UIViewController+Network.m in Sources */,

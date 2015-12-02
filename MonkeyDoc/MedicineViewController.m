@@ -10,11 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ColorThemeController.h"
 #import "UIViewController+Present.h"
+#import "UIViewController+Loading.h"
 #import "UIImageView+WebCache.h"
 #import "ETFlatBarButtonItem.h"
 #import "ODRefreshControl.h"
 #import "MedicineViewCell.h"
 #import "MedicineItemViewController.h"
+#import "HTTPManager.h"
 
 @interface MedicineViewController () {
     ODRefreshControl *refreshControl;
@@ -85,7 +87,28 @@
 #pragma mark - Loader
 
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
-//    [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] findAtEventWithCompanyName:@"any" withName:@"any" withEmail:@"any" withTelephone:@"any" withOrder:@"any"];
+    
+    // Send to server
+    AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] initWithPath:@"/api/user/friend/:id/delete"] manager];
+    
+    [self startLoadingView];
+    
+    // Post to server
+    [manager POST:[[[ROOT_DOMAIN stringByAppendingString:@"/api/user/friend/"] stringByAppendingString:@"ddd"] stringByAppendingString:@"/delete"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self stopLoadingView];
+        
+        // Reload our data
+        [self reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self stopLoadingView];
+        
+        // Show message
+        ETAlertView *alertView = [[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Failed", nil) message:NSLocalizedString(@"Person is too powerful, friend cannot be removed!", nil) confirmationButtonTitle:@"ok!"];
+        [alertView show];
+    }];
 }
 
 @end

@@ -11,9 +11,11 @@
 #import "UIImageView+WebCache.h"
 #import "ODRefreshControl.h"
 #import "UIViewController+Present.h"
+#import "UIViewController+Loading.h"
 #import "UIButton+Configuration.h"
 #import "MedicineItemHeaderViewCell.h"
 #import "MedicineDataController.h"
+#import "HTTPManager.h"
 
 @interface MedicineItemViewController () {
     ODRefreshControl *refreshControl;
@@ -84,7 +86,27 @@
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
     
     if (_medicineData) {
-//        [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] getAtMedicine:[[_MedicineData objectForKey:@"MedicineID"] integerValue]];
+        // Send to server
+        AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] initWithPath:@"/api/user/friend/:id/delete"] manager];
+        
+        [self startLoadingView];
+        
+        // Post to server
+        [manager POST:[[[ROOT_DOMAIN stringByAppendingString:@"/api/user/friend/"] stringByAppendingString:@"ddd"] stringByAppendingString:@"/delete"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self stopLoadingView];
+            
+            // Reload our data
+            [self reloadData];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self stopLoadingView];
+            
+            // Show message
+            ETAlertView *alertView = [[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Failed", nil) message:NSLocalizedString(@"Person is too powerful, friend cannot be removed!", nil) confirmationButtonTitle:@"ok!"];
+            [alertView show];
+        }];
     }
 }
 

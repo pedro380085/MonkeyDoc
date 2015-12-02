@@ -17,6 +17,7 @@
 #import "MedicineDataController.h"
 #import "HTTPManager.h"
 #import "PersonToken.h"
+#import "MedicineViewCell.h"
 
 @interface MedicineItemViewController () {
     ODRefreshControl *refreshControl;
@@ -86,6 +87,17 @@
 
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
     
+    _medicineData = @{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Medicine", @"available" : @"3"};
+    _dosageData = @[@{@"weekDay" : @"Monday", @"hour" : @"10h"},
+                    @{@"weekDay" : @"Tuesday", @"hour" : @"10h"},
+                    @{@"weekDay" : @"Tuesday", @"hour" : @"12h"},
+                    @{@"weekDay" : @"Tuesday", @"hour" : @"14h"}
+                    ];
+    
+    [self.tableView reloadData];
+    
+    return;
+    
     if (_medicineData) {
         // Send to server
         AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] init] manager];
@@ -122,14 +134,14 @@
 #pragma mark - Table View Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-    return 1 + [medicineController numberOfSectionsInTableView:aTableView];
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return (_medicineData ? 1 : 0);
     } else {
-        return [medicineController tableView:aTableView numberOfRowsInSection:section - 1];
+        return [_dosageData count];
     }
 }
 
@@ -137,7 +149,7 @@
     if (indexPath.section == 0) {
         return (headerHeight == 0.0f ? 10.0f : headerHeight);
     } else {
-        return [medicineController tableView:aTableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
+        return 72.0f;
     }
 }
 
@@ -157,11 +169,11 @@
         [cell.photo sd_setImageWithURL:[self.medicineData objectForKey:@"picture"]];
         
         // Title
-        self.title = [self.medicineData objectForKey:@"companyName"];
+        self.title = [self.medicineData objectForKey:@"name"];
         
         // Social
         [cell.view setFitFrameToContentSize:YES];
-        [cell.availableLabel setTitle:[self.medicineData objectForKey:@"telephone"] forState:UIControlStateNormal];
+        [cell.availableLabel setTitle:[NSString stringWithFormat:@"%@ left", [self.medicineData objectForKey:@"available"]] forState:UIControlStateNormal];
         
         cell.delegate = self;
         
@@ -173,7 +185,21 @@
         return cell;
         
     } else {
-        return [medicineController tableView:aTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
+        
+        static NSString *CustomCellIdentifier = @"CustomCellIdentifier";
+        MedicineViewCell *cell = (MedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+        
+        if (cell == nil) {
+            [aTableView registerNib:[UINib nibWithNibName:@"MedicineViewCell" bundle:nil] forCellReuseIdentifier:CustomCellIdentifier];
+            cell = (MedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+        }
+        
+        NSDictionary *dictionary = [self.dosageData objectAtIndex:indexPath.row];
+        
+        cell.weekDay.text = [dictionary objectForKey:@"weekDay"];
+        cell.hour.text = [dictionary objectForKey:@"hour"];
+        
+        return cell;
     }
 }
 

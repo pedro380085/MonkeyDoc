@@ -15,13 +15,30 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="MedicineViewController" id="qP7-sq-LJP"/>
                         <segue destination="m8Q-b5-M2p" kind="modal" identifier="LoginViewController" id="paA-Gf-xcC"/>
+                        <segue destination="fGQ-5i-BBl" kind="modal" identifier="MedicineViewController" id="iNJ-xY-dcb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPt-GE-Qzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="80"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8an-U9-x2m">
+            <objects>
+                <navigationController id="fGQ-5i-BBl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZMh-F0-baq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="8hC-yd-CzY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aXq-ga-aEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="720" y="479"/>
         </scene>
         <!--Medicine View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -31,6 +48,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="UPP-rV-gJs">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <items/>
+                                <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VIi-yG-vpV">
                                 <rect key="frame" x="0.0" y="54" width="320" height="470"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,30 +67,6 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="FF7-20-hnA"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="UPP-rV-gJs">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <barButtonItem image="add_user-32.png" id="L81-oe-i19">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="22" style="plain" systemItem="fixedSpace" id="2HV-4B-89u">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem image="upload-32.png" id="LSs-KP-bpD">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HBP-uU-Fyt">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem image="settings-32.png" id="Gmq-3C-1Fs">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
-                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -77,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="211"/>
+            <point key="canvasLocation" x="1135" y="479"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Wjl-0l-feZ">
@@ -217,9 +218,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_user-32.png" width="540" height="730"/>
         <image name="facebook-1024.png" width="1024" height="1024"/>
-        <image name="settings-32.png" width="32" height="32"/>
-        <image name="upload-32.png" width="32" height="32"/>
     </resources>
 </document>

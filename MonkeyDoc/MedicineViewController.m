@@ -92,9 +92,13 @@
     // Send to server
     AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] init] manager];
     
-    [self startLoadingView];
+//    [self startLoadingView];
     
     NSDictionary *params = @{@"access_token" : [[PersonToken sharedInstance] objectForKey:@"tokenID"]};
+    
+    speakerController.dosageData = @[@{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Medicine"}];
+    [_tableView reloadData];
+    return;
     
     // Post to server
     [manager POST:[ROOT_DOMAIN stringByAppendingString:@"/user/medicines"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -102,7 +106,8 @@
         [self stopLoadingView];
         
         // Reload our data
-        [self reloadData];
+        speakerController.dosageData = responseObject;
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

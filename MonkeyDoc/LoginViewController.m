@@ -81,6 +81,11 @@
 
 - (IBAction)authenticateUser:(id)sender {
     
+    [[PersonToken sharedInstance] setObject:@"aaaa" forKey:@"tokenID"];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    return;
+    
     [[[FBSDKLoginManager alloc] init] logInWithReadPermissions:@[@"public_profile", @"email", @"user_friends"] handler:
      ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
          

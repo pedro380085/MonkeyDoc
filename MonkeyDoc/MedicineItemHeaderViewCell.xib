@@ -108,6 +108,7 @@
                 <outlet property="availableLabel" destination="tGI-0E-fhY" id="mnx-iZ-f90"/>
                 <outlet property="buyButton" destination="Vmb-sB-08B" id="9An-kw-sMJ"/>
                 <outlet property="generalLabel" destination="h8o-Xb-9bG" id="CNO-jJ-wQE"/>
+                <outlet property="nameLabel" destination="tGI-0E-fhY" id="S6d-tf-QMe"/>
                 <outlet property="photo" destination="fVM-Wv-9qL" id="tmf-QK-Z4f"/>
                 <outlet property="photoButton" destination="wrC-Qp-Ixq" id="Th3-pl-eJf"/>
                 <outlet property="view" destination="gdQ-RZ-rlt" id="6ty-Xz-IEO"/>

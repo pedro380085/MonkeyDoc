@@ -63,6 +63,8 @@
 		97E5E4A21C0F437900E8A12C /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4A01C0F437800E8A12C /* Simplify.bundle */; };
 		97E5E4A31C0F437900E8A12C /* Simplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E5E4A11C0F437900E8A12C /* Simplify.framework */; };
 		97E5E4A71C0F43FB00E8A12C /* SIMProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E5E4A61C0F43FB00E8A12C /* SIMProductViewController.m */; };
+		97E5E4AB1C0F5D3400E8A12C /* ListMedicineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E5E4A91C0F5D3400E8A12C /* ListMedicineViewCell.m */; };
+		97E5E4AC1C0F5D3400E8A12C /* ListMedicineViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E5E4AA1C0F5D3400E8A12C /* ListMedicineViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +162,9 @@
 		97E5E4A11C0F437900E8A12C /* Simplify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Simplify.framework; sourceTree = "<group>"; };
 		97E5E4A51C0F43FB00E8A12C /* SIMProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMProductViewController.h; sourceTree = "<group>"; };
 		97E5E4A61C0F43FB00E8A12C /* SIMProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMProductViewController.m; sourceTree = "<group>"; };
+		97E5E4A81C0F5D3400E8A12C /* ListMedicineViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListMedicineViewCell.h; sourceTree = "<group>"; };
+		97E5E4A91C0F5D3400E8A12C /* ListMedicineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListMedicineViewCell.m; sourceTree = "<group>"; };
+		97E5E4AA1C0F5D3400E8A12C /* ListMedicineViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListMedicineViewCell.xib; sourceTree = "<group>"; };
 		BE37BF5596C1AAE6E067A07C /* libPods-MonkeyDoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MonkeyDoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7DA631E2E4BAA49448FD13 /* Pods-MonkeyDoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonkeyDoc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MonkeyDoc/Pods-MonkeyDoc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +258,9 @@
 		973714F21C0E9419004D95D1 /* Medicine */ = {
 			isa = PBXGroup;
 			children = (
+				97E5E4A81C0F5D3400E8A12C /* ListMedicineViewCell.h */,
+				97E5E4A91C0F5D3400E8A12C /* ListMedicineViewCell.m */,
+				97E5E4AA1C0F5D3400E8A12C /* ListMedicineViewCell.xib */,
 				97E5E3EC1C0E992500E8A12C /* MedicineDataController.h */,
 				97E5E3ED1C0E992500E8A12C /* MedicineDataController.m */,
 				97E5E3EE1C0E992500E8A12C /* MedicineItemHeaderViewCell.h */,
@@ -485,6 +493,7 @@
 				97E5E4A21C0F437900E8A12C /* Simplify.bundle in Resources */,
 				97E5E4041C0E992500E8A12C /* Medicines-Search@3x.png in Resources */,
 				97E5E4061C0E992500E8A12C /* Medicines@3x.png in Resources */,
+				97E5E4AC1C0F5D3400E8A12C /* ListMedicineViewCell.xib in Resources */,
 				97E5E4051C0E992500E8A12C /* Medicines@2x.png in Resources */,
 				97E5E4021C0E992500E8A12C /* MedicineItemViewController.xib in Resources */,
 				97E5E49B1C0F380100E8A12C /* doctors@2x.png in Resources */,
@@ -556,6 +565,7 @@
 				97E5E49F1C0F3EC400E8A12C /* MainViewController.m in Sources */,
 				97E5E48E1C0F35F900E8A12C /* UITextField+Components.m in Sources */,
 				97E5E3FE1C0E992500E8A12C /* MedicineDataController.m in Sources */,
+				97E5E4AB1C0F5D3400E8A12C /* ListMedicineViewCell.m in Sources */,
 				973714C11C0E8ADB004D95D1 /* AppDelegate.m in Sources */,
 				97E5E4901C0F35F900E8A12C /* UIView+Bounds.m in Sources */,
 				97E5E40F1C0E9EB400E8A12C /* LoginViewController.m in Sources */,

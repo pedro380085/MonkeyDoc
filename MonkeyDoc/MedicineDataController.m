@@ -7,9 +7,10 @@
 //
 
 #import "MedicineDataController.h"
-#import "MedicineViewCell.h"
+#import "ListMedicineViewCell.h"
 #import "MedicineItemViewController.h"
 #import "UIScrollView+EmptyState.h"
+#import "UIImageView+WebCache.h"
 
 @implementation MedicineDataController {
     NSArray *filteredData;
@@ -41,17 +42,17 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CustomCellIdentifier = @"CustomCellIdentifier";
-    MedicineViewCell *cell = (MedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    ListMedicineViewCell *cell = (ListMedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     
     if (cell == nil) {
-        [aTableView registerNib:[UINib nibWithNibName:@"MedicineViewCell" bundle:nil] forCellReuseIdentifier:CustomCellIdentifier];
-        cell = (MedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+        [aTableView registerNib:[UINib nibWithNibName:@"ListMedicineViewCell" bundle:nil] forCellReuseIdentifier:CustomCellIdentifier];
+        cell = (ListMedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
     
     NSDictionary *dictionary = [self.dosageData objectAtIndex:indexPath.row];
     
-    cell.weekDay.text = [dictionary objectForKey:@"companyName"];
-    cell.hour.text = [dictionary objectForKey:@"website"];
+    cell.name.text = [dictionary objectForKey:@"name"];
+    [cell.picture sd_setImageWithURL:[dictionary objectForKey:@"picture"]];
     
     return cell;
 }

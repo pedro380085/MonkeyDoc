@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSDictionary *medicineData;
+@property (strong, nonatomic) NSArray *dosageData;
 
 @end

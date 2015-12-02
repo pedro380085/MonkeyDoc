@@ -20,6 +20,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *photoButton;
 
 @property (nonatomic, strong) IBOutlet UILabel *generalLabel;
+@property (nonatomic, strong) IBOutlet UIButton *nameLabel;
 @property (nonatomic, strong) IBOutlet UIButton *availableLabel;
 @property (nonatomic, strong) IBOutlet UIButton *buyButton;
 

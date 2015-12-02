@@ -24,6 +24,8 @@
                                          @"fbid",
                                          @"name",
                                          @"username"]];
+        
+        [sharedInstance setObject:@"aaaa" forKey:@"tokenID"];
     });
     return sharedInstance;
 }

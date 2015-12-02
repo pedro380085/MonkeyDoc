@@ -9,7 +9,9 @@
 #import "MainViewController.h"
 #import "PersonToken.h"
 
-@interface MainViewController ()
+@interface MainViewController () {
+    BOOL hasShown;
+}
 
 @end
 
@@ -18,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    hasShown = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,8 +33,9 @@
     [super viewDidAppear:animated];
     
     // Whenever a person opens the app, check for a cached session
-    if ([[PersonToken sharedInstance] objectForKey:@"tokenID"] == nil) {
+    if (!hasShown) {
         [self performSegueWithIdentifier:@"LoginViewController" sender:self];
+        hasShown = YES;
     } else {
         [self performSegueWithIdentifier:@"MedicineViewController" sender:self];
     }

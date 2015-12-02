@@ -28,7 +28,7 @@
     // Photo
     [_photo.layer setMasksToBounds:YES];
     
-    _buyButton.layer.cornerRadius = 44.0f;
+//    _buyButton.layer.cornerRadius = 44.0f;
     
     // Labels
     [_generalLabel setText:NSLocalizedString(@"GENERAL INFORMATION", nil)];

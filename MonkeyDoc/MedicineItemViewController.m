@@ -87,7 +87,7 @@
 
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
     
-    _medicineData = @{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Medicine", @"available" : @"3"};
+    _medicineData = @{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Lidocaine", @"available" : @"3"};
     _dosageData = @[@{@"weekDay" : @"Monday", @"hour" : @"10h"},
                     @{@"weekDay" : @"Tuesday", @"hour" : @"10h"},
                     @{@"weekDay" : @"Tuesday", @"hour" : @"12h"},

@@ -47,7 +47,7 @@
     
         PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
         mposButtons.label = @"mPOS Buttons";
-        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"0.50"];
+        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"30.00"];
         
         PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];

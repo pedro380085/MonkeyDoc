@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPRequestOperationManager.h"
-#define ROOT_DOMAIN @"https://heyme.co"
+#define ROOT_DOMAIN @"http://miami-hackathon.brunolemos.heroku.com"
 
 @class AFHTTPRequestOperationManager;
 
 @interface HTTPManager : NSObject
 
-- (id)initWithPath:(NSString *)aAliasedPath;
 - (AFHTTPRequestOperationManager *)manager;
 
 @end

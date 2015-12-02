@@ -86,14 +86,39 @@
          
          if (error == nil && [FBSDKAccessToken currentAccessToken]) {
              
-             // Save block for later
-//             returnBlock = callbackBlock;
-             
              // Start loading
              [self startLoadingView];
              
-             // Return our callback
-//             apiBlock([[FBSDKAccessToken currentAccessToken] tokenString]);
+             // Send to server
+             AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] init] manager];
+             
+             [self startLoadingView];
+             
+             NSDictionary *params = @{@"fb_token" : [[FBSDKAccessToken currentAccessToken] tokenString]};
+             
+             // Post to server
+             [manager GET:[ROOT_DOMAIN stringByAppendingString:@"/auth/facebook/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 
+                 // Save on our bin
+                 [self saveObjectToBin:responseObject];
+                 
+                 // Save on defaults
+                 [self saveUserDefaults:responseObject];
+                 
+                 // Stop loading
+                 [self stopLoadingView];
+                 
+                 // Reload our data
+                 [self reloadData];
+                 
+             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 
+                 [self stopLoadingView];
+                 
+                 // Show message
+                 ETAlertView *alertView = [[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Failed", nil) message:NSLocalizedString(@"Person is too powerful, friend cannot be removed!", nil) confirmationButtonTitle:@"ok!"];
+                 [alertView show];
+             }];
              
          } else {
              

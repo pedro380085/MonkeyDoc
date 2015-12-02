@@ -17,6 +17,7 @@
 #import "MedicineViewCell.h"
 #import "MedicineItemViewController.h"
 #import "HTTPManager.h"
+#import "PersonToken.h"
 
 @interface MedicineViewController () {
     ODRefreshControl *refreshControl;
@@ -89,12 +90,14 @@
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
     
     // Send to server
-    AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] initWithPath:@"/api/user/friend/:id/delete"] manager];
+    AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] init] manager];
     
     [self startLoadingView];
     
+    NSDictionary *params = @{@"access_token" : [[PersonToken sharedInstance] objectForKey:@"tokenID"]};
+    
     // Post to server
-    [manager POST:[[[ROOT_DOMAIN stringByAppendingString:@"/api/user/friend/"] stringByAppendingString:@"ddd"] stringByAppendingString:@"/delete"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[ROOT_DOMAIN stringByAppendingString:@"/user/medicines"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self stopLoadingView];
         

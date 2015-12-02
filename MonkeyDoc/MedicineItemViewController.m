@@ -16,6 +16,7 @@
 #import "MedicineItemHeaderViewCell.h"
 #import "MedicineDataController.h"
 #import "HTTPManager.h"
+#import "PersonToken.h"
 
 @interface MedicineItemViewController () {
     ODRefreshControl *refreshControl;
@@ -87,12 +88,14 @@
     
     if (_medicineData) {
         // Send to server
-        AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] initWithPath:@"/api/user/friend/:id/delete"] manager];
+        AFHTTPRequestOperationManager *manager = [[[HTTPManager alloc] init] manager];
         
         [self startLoadingView];
         
+        NSDictionary *params = @{@"access_token" : [[PersonToken sharedInstance] objectForKey:@"tokenID"]};
+        
         // Post to server
-        [manager POST:[[[ROOT_DOMAIN stringByAppendingString:@"/api/user/friend/"] stringByAppendingString:@"ddd"] stringByAppendingString:@"/delete"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:[ROOT_DOMAIN stringByAppendingString:@"/user/prescriptions"]  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             [self stopLoadingView];
             

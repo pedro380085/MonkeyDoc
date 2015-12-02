@@ -13,10 +13,8 @@
 #import "UIImageView+WebCache.h"
 #import "ETFlatBarButtonItem.h"
 #import "ODRefreshControl.h"
-#import "HumanViewController.h"
 #import "MedicineViewCell.h"
 #import "MedicineItemViewController.h"
-#import "CompanyMacro.h"
 
 @interface MedicineViewController () {
     ODRefreshControl *refreshControl;
@@ -50,12 +48,7 @@
     
     // Table View
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [ColorThemeController tableViewBackgroundColor];
-    self.searchDisplayController.searchResultsTableView.backgroundColor = [ColorThemeController tableViewBackgroundColor];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.searchDisplayController.searchBar.searchBarStyle = UISearchBarStyleProminent;
-    }
+    _tableView.backgroundColor = [ColorThemeController tableViewCellBackgroundColor];
     
     // Refresh Control
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
@@ -67,9 +60,6 @@
     speakerController.delegate = self;
     _tableView.delegate = speakerController;
     _tableView.dataSource = speakerController;
-    self.searchDisplayController.delegate = speakerController;
-    self.searchDisplayController.searchResultsDataSource = speakerController;
-    self.searchDisplayController.searchResultsDelegate = speakerController;
     
     // Load people
     [self loadData];
@@ -84,8 +74,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [[INTrackingToken sharedInstance] addToQueueWithTarget:@"screen/Medicines" atTarget:[[[MonkeyDocToken sharedInstance] objectForKey:@"eventID"] integerValue]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,36 +85,7 @@
 #pragma mark - Loader
 
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
-    [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] findAtEventWithCompanyName:@"any" withName:@"any" withEmail:@"any" withTelephone:@"any" withOrder:@"any"];
-}
-
-#pragma mark - APIController Delegate
-
-- (void)apiController:(INAPIController *)apiController didLoadDictionaryFromServer:(NSDictionary *)dictionary {
-    
-    if ([apiController.method isEqualToString:@"find"]) {
-        
-        // Prepare our dictionary
-        [speakerController setMedicineData:[dictionary objectForKey:@"data"]];
-        
-        // Reload all table data
-        [self.tableView reloadData];
-        
-    }
-    
-    [refreshControl endRefreshing];
-}
-
-- (void)apiController:(INAPIController *)apiController didSaveForLaterWithError:(NSError *)error {
-    [super apiController:apiController didSaveForLaterWithError:error];
-    
-    [refreshControl endRefreshing];
-}
-
-- (void)apiController:(INAPIController *)apiController didFailWithError:(NSError *)error {
-    [super apiController:apiController didFailWithError:error];
-    
-    [refreshControl endRefreshing];
+//    [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] findAtEventWithCompanyName:@"any" withName:@"any" withEmail:@"any" withTelephone:@"any" withOrder:@"any"];
 }
 
 @end

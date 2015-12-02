@@ -9,7 +9,7 @@
 #import "WrapperViewController.h"
 #import "MedicineDataController.h"
 
-@interface MedicineViewController : WrapperViewController <INAPIControllerDelegate, UIGestureRecognizerDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, MedicineDataControllerDelegate>
+@interface MedicineViewController : WrapperViewController <UIGestureRecognizerDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, MedicineDataControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

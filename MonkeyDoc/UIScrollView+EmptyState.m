@@ -32,7 +32,7 @@
         CGRect rect = CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height);
         UIView *wrapper = [[UIView alloc] initWithFrame:rect];
         [wrapper setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [wrapper setBackgroundColor:[ColorThemeController tableViewBackgroundColor]];
+        [wrapper setBackgroundColor:[ColorThemeController tableViewCellBackgroundColor]];
         [wrapper setTag:EMPTY_SCREEN];
         
         // Add an image

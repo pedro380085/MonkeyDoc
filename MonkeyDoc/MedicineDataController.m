@@ -20,7 +20,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     // Filter the array using NSPredicate
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"companyName CONTAINS[cd] %@ OR email CONTAINS[cd] %@ OR website CONTAINS[cd] %@", searchText, searchText, searchText];
-    filteredData = [self.medicineData filteredArrayUsingPredicate:predicate];
+    filteredData = [self.dosageData filteredArrayUsingPredicate:predicate];
 }
 
 #pragma mark - Table View Data Source
@@ -31,9 +31,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    [_delegate.tableView emptyStateForImageNamed:@"Medicines" withTitle:NSLocalizedString(@"Medicines", nil) withDescription:NSLocalizedString(@"We still do not have a list of Medicines, as soon as they are added you will be notified.", nil) forArray:self.medicineData inSection:section];
-    
-    return [self.medicineData count] + [self.dosageData count];
+    return [_delegate.tableView emptyStateForImageNamed:@"Medicines" withTitle:NSLocalizedString(@"Medicines", nil) withDescription:NSLocalizedString(@"We still do not have a list of Medicines, as soon as they are added you will be notified.", nil) forArray:self.dosageData inSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -50,7 +48,7 @@
         cell = (MedicineViewCell *)[aTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
     
-    NSDictionary *dictionary = [self.medicineData objectAtIndex:indexPath.row];
+    NSDictionary *dictionary = [self.dosageData objectAtIndex:indexPath.row];
     
     cell.weekDay.text = [dictionary objectForKey:@"companyName"];
     cell.hour.text = [dictionary objectForKey:@"website"];
@@ -71,7 +69,7 @@
         vc = (MedicineItemViewController *)[[[self.delegate.splitViewController.viewControllers lastObject] viewControllers] objectAtIndex:0];
     }
     
-    NSDictionary *dictionary = [self.medicineData objectAtIndex:indexPath.row];
+    NSDictionary *dictionary = [self.dosageData objectAtIndex:indexPath.row];
     
     [vc setTitle:[dictionary objectForKey:@"companyName"]];
     [vc setMedicineData:dictionary];

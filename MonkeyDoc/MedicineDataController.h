@@ -18,7 +18,6 @@
 @interface MedicineDataController : NSObject <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, strong) UIViewController<UINavigationControllerDelegate, MedicineDataControllerDelegate> *delegate;
-@property (strong, nonatomic) NSArray *medicineData;
 @property (strong, nonatomic) NSArray *dosageData;
 
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ETAlertView.h"
+#import "ColorThemeController.h"
 
 @implementation AppDelegate
 
@@ -28,14 +29,6 @@
     
     // Status Bar
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-    
-    // Whenever a person opens the app, check for a cached session
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"user_friends"]
-                                           allowLoginUI:NO
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {}];
-    }
     
     // Reset our badge count
     application.applicationIconBadgeNumber = 0;
@@ -74,10 +67,6 @@
     
     // Reset our badge count
     application.applicationIconBadgeNumber = 0;
-    
-    // Handle the user leaving the app while the Facebook login dialog is being shown
-    // For example: when the user presses the iOS "home" button while the login dialog is active
-    [FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

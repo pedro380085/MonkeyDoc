@@ -4,6 +4,7 @@ inhibit_all_warnings!
 
 target 'MonkeyDoc' do
   pod 'AFNetworking', '~> 2.6.0'
+  pod 'JTSImageViewController'
   pod 'MBProgressHUD'
   pod 'SDWebImage'
 end

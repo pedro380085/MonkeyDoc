@@ -12,11 +12,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "AppDelegate.h"
 #import "ETFlatBarButtonItem.h"
-#import "CompanyMacro.h"
-#import "HumanViewController.h"
 #import "UIViewController+Present.h"
 #import "UIViewController+Loading.h"
-#import "UIColor+Hex.h"
 
 #define UNIQUE_LOADER 1
 
@@ -82,9 +79,6 @@
     // Unregister for keyboard notifications while not visible.
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-    // Push queue to our server
-    [[INTrackingToken sharedInstance] pushQueueToServer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,54 +195,6 @@
     }
 }
 
-#pragma mark - Public Methods
-
-- (void)removePerson {
-
-    [[INTrackingToken sharedInstance] addToQueueWithTarget:@"action/logout" atTarget:[[[INEventToken sharedInstance] objectForKey:@"eventID"] integerValue]];
-    
-    // Remove Facebook Login
-    if ([FBSDKAccessToken currentAccessToken]) {
-        [[[FBSDKLoginManager alloc] init] logOut];
-    }
-    
-    // Remove InEvent Login
-    if ([[INPersonToken sharedInstance] isPersonAuthenticated]) {
-        
-        // Remove from previous channels
-        [[[INPersonDeviceAPIController alloc] initWithDelegate:nil] dismissAuthenticatedAtCompany:[APP_COMPANYID integerValue] withModel:@"1" withDeviceKey:[[INDeviceToken sharedInstance] objectForKey:@"deviceID"]];
-        
-        // Wipe user data
-        [[INPersonToken sharedInstance] removePerson];
-    }
-    
-    // Update the current state of the schedule controller
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"eventCurrentState" object:nil userInfo:nil];
-    
-    // Check for person session
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"verify" object:nil userInfo:@{@"type": @"person"}];
-}
-
-- (void)removeEvent {
-    
-    [[INTrackingToken sharedInstance] addToQueueWithTarget:@"action/event/exit" atTarget:[[[INEventToken sharedInstance] objectForKey:@"eventID"] integerValue]];
-    
-    // Remove the tokenID and enterprise
-    [[INEventToken sharedInstance] removeEvent];
-    
-    // Check for event session
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"verify" object:nil userInfo:@{@"type": @"enterprise"}];
-}
-
-#pragma mark - Item Badge
-
-- (void)clearBadge {
-    if (self.tabBarItem.badgeValue != nil && _badgeTarget != nil) {
-        [[[INPersonBadgeAPIController alloc] initWithDelegate:self] clearAuthenticatedAtEventWithTarget:_badgeTarget];
-        self.tabBarItem.badgeValue = nil;
-    }
-}
-
 #pragma mark - View Controller Delegate
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -341,122 +287,6 @@
     }
     
     return YES;
-}
-
-#pragma mark - INAPIController Delegate
-
-- (void)apiController:(INAPIController *)apiController didPartiallyReceiveDictionaryFromServer:(CGFloat)percentage {
-    
-    // Shows a loader on top of the screen indicating progress
-    UIView *loaderView;
-    
-    // Find previous loader
-    for (UIView *view in self.view.subviews) {
-        if (view.tag == UNIQUE_LOADER) loaderView = view;
-    }
-    
-    if (loaderView == nil) {
-        UIView *loaderView = [[UIView alloc] initWithFrame:CGRectZero];
-        [loaderView setBackgroundColor:[ColorThemeController positiveColor]];
-        [loaderView setTag:UNIQUE_LOADER];
-        [self.view addSubview:loaderView];
-    }
-    
-    // Calculate and display current progress
-    [loaderView setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width * percentage, 4.0f)];
-    
-    // Remove view after a while
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [loaderView removeFromSuperview];
-    });
-}
-
-- (void)apiController:(INAPIController *)apiController didLoadDictionaryFromServer:(NSDictionary *)dictionary {
-    // Stop loading view
-    [self stopLoadingView];
-}
-
-- (void)apiController:(INAPIController *)apiController didFailWithError:(NSError *)error {
-    
-    // Stop loading view
-    [self stopLoadingView];
-    
-    // Implement a method that allows every failing requisition to be reloaded
-    
-    if ((int)(error.code / 100) == 5) {
-        // We have a server error
-        [[[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", nil) message:NSLocalizedString(@"Oh oh.. It appears that our server is having some trouble. Do you want to try again?", nil) negativeButtonTitle:NSLocalizedString(@"No", nil) positiveButtonTitle:NSLocalizedString(@"Yes", nil) negativeBlock:nil positiveBlock:^{
-            if (apiController != nil) {
-                [apiController startAsyncronousDownload];
-            }
-        }] show];
-     
-    } else if (error.code == 403 || error.code == 405 || error.code == 406) {
-        // We have a server error
-        [[[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", nil) message:NSLocalizedString(@"The operation you are trying to perform is not acceptable...", nil) confirmationButtonTitle:@"Ok"] show];
-        
-    } else if (error.code == 401) {
-        // We have a server error
-        [[[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", nil) message:NSLocalizedString(@"It appears that your credentials expired! Can you log again?", nil) confirmationButtonTitle:@"Ok" confirmationBlock:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"verify" object:nil userInfo:@{@"type": @"person"}];
-        }] show];
-        
-        // We check which permission we should remove
-        if ([[INPersonToken sharedInstance] isPersonAuthenticated]) {
-            [[INPersonToken sharedInstance] removePerson];
-        }
-        
-        // Update the current state of the schedule controller
-        if ([[INEventToken sharedInstance] isEventSelected]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"eventCurrentState" object:nil userInfo:nil];
-        }
-        
-    } else {
-        // Default unknown error
-        [[[ETAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", nil) message:NSLocalizedString(@"Hum, it appears that the connectivity is unstable.. Do you want to try again?", nil) negativeButtonTitle:NSLocalizedString(@"No", nil) positiveButtonTitle:NSLocalizedString(@"Yes", nil) negativeBlock:nil positiveBlock:^{
-            if (apiController != nil) {
-                [apiController startAsyncronousDownload];
-            }
-        }] show];
-    }
-}
-
-- (void)apiController:(INAPIController *)apiController didSaveForLaterWithError:(NSError *)error {
-    
-    // Stop loading view
-    [self stopLoadingView];
-    
-    // Implement a custom view to be displayed to the user
-    CGRect rect = CGRectMake((self.view.frame.size.width - 120.0f) / 2.0f, -120.0f, 120.0f, 120.0f);
-    UIView *view = [[UIView alloc] initWithFrame:rect];
-    [view setBackgroundColor:[UIColor colorFromHexadecimalValue:@"#FDFDFD"]];
-    [view.layer setBorderWidth:1.0f];
-    [view.layer setBorderColor:[UIColor blackColor].CGColor];
-    [view.layer setCornerRadius:4.0f];
-
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sad-64"]];
-    [imageView setFrame:CGRectMake((view.frame.size.width - imageView.frame.size.width) / 2.0f, (view.frame.size.height - imageView.frame.size.height) / 3.0f, imageView.frame.size.width, imageView.frame.size.height)];
-    [view addSubview:imageView];
-
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width * 0.1f, 78.0f, view.frame.size.width * 0.8f, 40.0f)];
-    [label setText:NSLocalizedString(@"Saved offline", nil)];
-    [label setTextColor:[ColorThemeController mainTextColor]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setNumberOfLines:2];
-    [label setFont:[UIFont systemFontOfSize:16.0f]];
-    [view addSubview:label];
-    
-    [self.view addSubview:view];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        view.frame = CGRectMake(rect.origin.x, -4.0f, rect.size.width, rect.size.height);
-    } completion:^(BOOL completion){
-        [UIView animateWithDuration:0.2 delay:2.0 options:0 animations:^{
-            view.frame = CGRectMake(rect.origin.x, -120.0f, rect.size.width, rect.size.height);
-        } completion:^(BOOL completion){
-            [view removeFromSuperview];
-        }];
-    }];
 }
 
 @end

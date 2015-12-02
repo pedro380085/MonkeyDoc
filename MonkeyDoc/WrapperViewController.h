@@ -28,11 +28,4 @@
 - (void)deallocTapBehind;
 - (void)handleTapBehind:(UITapGestureRecognizer *)sender;
 
-// Manipulation
-- (void)removePerson;
-- (void)removeEvent;
-
-// Item Badge
-- (void)clearBadge;
-
 @end

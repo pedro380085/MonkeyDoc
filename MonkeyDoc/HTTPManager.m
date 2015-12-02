@@ -9,7 +9,6 @@
 #import "HTTPManager.h"
 #include <CommonCrypto/CommonHMAC.h>
 #import "AFHTTPRequestOperationManager.h"
-#import "DeviceToken.h"
 #import "PersonToken.h"
 
 @implementation HTTPManager {
@@ -71,16 +70,11 @@
     // Add a specific timeout
     [manager.requestSerializer setTimeoutInterval:10.0f];
     
-    // Define our request time
-    NSString *date = [NSString stringWithFormat:@"%ld000", ((long)[[NSDate date] timeIntervalSince1970]) + (([[DeviceToken sharedInstance] objectForKey:@"timeDelta"] != nil) ? (long)[[[DeviceToken sharedInstance] objectForKey:@"timeDelta"] doubleValue] : 0)];
-    [manager.requestSerializer setValue:date forHTTPHeaderField:@"X-AUTH-TIME"];
-    
     // Set our username
     [manager.requestSerializer setValue:[[PersonToken sharedInstance] objectForKey:@"username"] forHTTPHeaderField:@"X-AUTH-USERNAME"];
     
     // Set an encrypted token
-    NSString *secret = [self generateTokenForPath:aliasedPath forTime:date secret:[[PersonToken sharedInstance] objectForKey:@"tokenID"]];
-    [manager.requestSerializer setValue:secret forHTTPHeaderField:@"X-AUTH-TOKEN"];
+//    [manager.requestSerializer setValue:secret forHTTPHeaderField:@"X-AUTH-TOKEN"];
     
     return manager;
 }

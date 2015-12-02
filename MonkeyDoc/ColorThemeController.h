@@ -19,11 +19,19 @@
 + (UIColor *)shadowColor;
 + (UIColor *)textColor;
 
++ (UIColor *)mainTextColor;
++ (UIColor *)secondaryTextColor;
+
 #pragma mark - Button
 
 + (UIColor *)buttonBackgroundColorNormal;
 + (UIColor *)buttonBackgroundColorHighlighted;
 + (UIColor *)buttonTextColor;
+
+#pragma mark - Navigation
+
++ (UIColor *)navigationBarBackgroundColor;
++ (UIColor *)navigationBarTextColor;
 
 #pragma mark - Table View Cell
 

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wrC-Qp-Ixq">
-                                <rect key="frame" x="122" y="19" width="76" height="76"/>
+                                <rect key="frame" x="96" y="19" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal">
@@ -56,16 +56,13 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" backgroundImage="safari-32.png">
+                                                <state key="normal" backgroundImage="doctors.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="loadWebView:" destination="L4s-ft-Wnt" eventType="touchUpInside" id="6Jd-5h-Jeu"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tGI-0E-fhY">
                                                 <rect key="frame" x="40" y="11" width="242" height="30"/>
@@ -76,9 +73,6 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="loadWebView:" destination="L4s-ft-Wnt" eventType="touchUpInside" id="RCk-eN-rBf"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <animations/>
@@ -97,7 +91,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male3-256.png" id="fVM-Wv-9qL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doctors.png" id="fVM-Wv-9qL">
                                 <rect key="frame" x="96" y="19" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -111,18 +105,18 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="availableLabel" destination="tGI-0E-fhY" id="mnx-iZ-f90"/>
+                <outlet property="buyButton" destination="Vmb-sB-08B" id="9An-kw-sMJ"/>
                 <outlet property="generalLabel" destination="h8o-Xb-9bG" id="CNO-jJ-wQE"/>
                 <outlet property="photo" destination="fVM-Wv-9qL" id="tmf-QK-Z4f"/>
                 <outlet property="photoButton" destination="wrC-Qp-Ixq" id="Th3-pl-eJf"/>
                 <outlet property="view" destination="gdQ-RZ-rlt" id="6ty-Xz-IEO"/>
-                <outlet property="websiteLabel" destination="tGI-0E-fhY" id="eQZ-2B-pHV"/>
                 <outlet property="wrapper" destination="Jjy-fa-83G" id="EqL-FO-hkm"/>
             </connections>
             <point key="canvasLocation" x="317" y="244.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="safari-32.png" width="32" height="32"/>
-        <image name="user_male3-256.png" width="256" height="256"/>
+        <image name="doctors.png" width="50" height="50"/>
     </resources>
 </document>

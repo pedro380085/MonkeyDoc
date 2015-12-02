@@ -13,12 +13,14 @@
 #import "UIViewController+Present.h"
 #import "UIButton+Configuration.h"
 #import "MedicineItemHeaderViewCell.h"
+#import "MedicineDataController.h"
 
 @interface MedicineItemViewController () {
     ODRefreshControl *refreshControl;
     BOOL editingMode;
     NSString *baseMessage;
     CGFloat headerHeight;
+    MedicineDataController *medicineController;
 }
 
 @end
@@ -48,9 +50,8 @@
     [refreshControl addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
     
     // Data Controller
-    scheduleController = [[AgendaDataController alloc] init];
-    scheduleController.delegate = self;
-    scheduleController.displayAsList = YES;
+    medicineController = [[MedicineDataController alloc] init];
+    medicineController.delegate = self;
     
     // Prepare screen
     [self loadData];
@@ -71,8 +72,8 @@
 
 #pragma mark - Setter Methods
 
-- (void)setMedicineData:(NSDictionary *)MedicineData {
-    _MedicineData = MedicineData;
+- (void)setMedicineData:(NSDictionary *)medicineData {
+    _medicineData = medicineData;
     
     [self.tableView reloadData];
     [self loadData];
@@ -82,8 +83,8 @@
 
 - (void)loadDataPreloadingPreviousCache:(BOOL)preload {
     
-    if (_MedicineData) {
-        [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] getAtMedicine:[[_MedicineData objectForKey:@"MedicineID"] integerValue]];
+    if (_medicineData) {
+//        [[[INMedicineAPIController alloc] initWithDelegate:self returnPreviousSave:preload] getAtMedicine:[[_MedicineData objectForKey:@"MedicineID"] integerValue]];
     }
 }
 
@@ -96,14 +97,14 @@
 #pragma mark - Table View Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-    return 1 + [scheduleController numberOfSectionsInTableView:aTableView];
+    return 1 + [medicineController numberOfSectionsInTableView:aTableView];
 }
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return (_MedicineData ? 1 : 0);
+        return (_medicineData ? 1 : 0);
     } else {
-        return [scheduleController tableView:aTableView numberOfRowsInSection:section - 1];
+        return [medicineController tableView:aTableView numberOfRowsInSection:section - 1];
     }
 }
 
@@ -111,7 +112,7 @@
     if (indexPath.section == 0) {
         return (headerHeight == 0.0f ? 10.0f : headerHeight);
     } else {
-        return [scheduleController tableView:aTableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
+        return [medicineController tableView:aTableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
     }
 }
 
@@ -128,22 +129,14 @@
         }
         
         // Photo
-        [cell.photo loadProfileImageForDictionary:_MedicineData withRoundedLayout:NO];
+        [cell.photo sd_setImageWithURL:[self.medicineData objectForKey:@"picture"]];
         
         // Title
-        self.title = [[_MedicineData objectForKey:@"companyName"] stringByDecodingHTMLEntities];
+        self.title = [self.medicineData objectForKey:@"companyName"];
         
         // Social
         [cell.view setFitFrameToContentSize:YES];
-        [cell.telephoneLabel setTitle:[_MedicineData objectForKey:@"telephone"] forState:UIControlStateNormal];
-        [cell.emailLabel setTitle:[_MedicineData objectForKey:@"email"] forState:UIControlStateNormal];
-        [cell.websiteLabel setTitle:[_MedicineData objectForKey:@"website"] forState:UIControlStateNormal];
-        [cell.view toggleFrameForWrapperOfView:cell.telephoneLabel basedOnText:[_MedicineData objectForKey:@"telephone"]];
-        [cell.view toggleFrameForWrapperOfView:cell.emailLabel basedOnText:[_MedicineData objectForKey:@"email"]];
-        [cell.view toggleFrameForWrapperOfView:cell.websiteLabel basedOnText:[_MedicineData objectForKey:@"website"]];
-        
-        // Description
-        [cell.view resizeAndSetAttributedText:[NSAttributedString attributedStringFromHTML:[[_MedicineData objectForKey:@"bio"] stringByDecodingHTMLEntities] normalFont:cell.descript.font boldFont:[UIFont systemFontOfSize:cell.descript.font.pointSize] italicFont:[UIFont italicSystemFontOfSize:cell.descript.font.pointSize]] forTextInput:cell.descript withMinimumHeight:32.0f];
+        [cell.availableLabel setTitle:[self.medicineData objectForKey:@"telephone"] forState:UIControlStateNormal];
         
         cell.delegate = self;
         
@@ -155,14 +148,14 @@
         return cell;
         
     } else {
-        return [scheduleController tableView:aTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
+        return [medicineController tableView:aTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
     }
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section > 0) {
-        [scheduleController tableView:aTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
+        [medicineController tableView:aTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
     }
     
     [aTableView deselectRowAtIndexPath:indexPath animated:YES];

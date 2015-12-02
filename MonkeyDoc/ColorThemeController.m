@@ -56,6 +56,14 @@
 	return [ColorThemeController colorFromHexString:@"#111111"];
 }
 
++ (UIColor *)mainTextColor {
+    return [ColorThemeController colorFromHexString:@"#111111"];
+}
+
++ (UIColor *)secondaryTextColor {
+    return [ColorThemeController colorFromHexString:@"#888888"];
+}
+
 #pragma mark - States
 
 + (UIColor *)buttonBackgroundColorNormal {
@@ -68,6 +76,15 @@
 
 + (UIColor *)buttonTextColor {
 	return [ColorThemeController colorFromHexString:@"#FDFDFD"];
+}
+
+#pragma mark - Navigation
+
++ (UIColor *)navigationBarBackgroundColor {
+    return [ColorThemeController colorFromHexString:@"#0c5890"];
+}
++ (UIColor *)navigationBarTextColor {
+    return [ColorThemeController colorFromHexString:@"#ffffff"];
 }
 
 #pragma mark - Table View Cell

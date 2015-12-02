@@ -20,12 +20,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *photoButton;
 
 @property (nonatomic, strong) IBOutlet UILabel *generalLabel;
-@property (nonatomic, strong) IBOutlet UIButton *telephoneLabel;
-@property (nonatomic, strong) IBOutlet UIButton *emailLabel;
-@property (nonatomic, strong) IBOutlet UIButton *websiteLabel;
-
-@property (nonatomic, strong) IBOutlet UILabel *aboutLabel;
-@property (nonatomic, strong) IBOutlet UIPlaceHolderTextView *descript;
+@property (nonatomic, strong) IBOutlet UIButton *availableLabel;
+@property (nonatomic, strong) IBOutlet UIButton *buyButton;
 
 @property (strong, nonatomic) MedicineItemViewController *delegate;
 

@@ -7,14 +7,15 @@
 //
 
 #import "WrapperViewController.h"
+#import "MedicineDataController.h"
 @import MessageUI;
 
 @class UIPlaceHolderTextView;
 
-@interface MedicineItemViewController : WrapperViewController <UIGestureRecognizerDelegate, UISplitViewControllerDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
+@interface MedicineItemViewController : WrapperViewController <UIGestureRecognizerDelegate, UISplitViewControllerDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, MedicineDataControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSDictionary *MedicineData;
+@property (strong, nonatomic) NSDictionary *medicineData;
 
 @end

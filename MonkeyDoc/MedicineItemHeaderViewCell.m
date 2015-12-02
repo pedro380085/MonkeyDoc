@@ -27,6 +27,8 @@
     // Photo
     [_photo.layer setMasksToBounds:YES];
     
+    _buyButton.layer.cornerRadius = 44.0f;
+    
     // Labels
     [_generalLabel setText:NSLocalizedString(@"GENERAL INFORMATION", nil)];
     [_generalLabel configureHighlightedLabel];
@@ -42,7 +44,7 @@
     
     // Create image info
     JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-    imageInfo.imageURL = [_delegate.medicineData objectForKey:@"picture"];
+    imageInfo.imageURL = [NSURL URLWithString:[_delegate.medicineData objectForKey:@"picture"]];
     imageInfo.referenceRect = self.view.frame;
     imageInfo.referenceView = self.view;
     

@@ -96,7 +96,11 @@
     
     NSDictionary *params = @{@"access_token" : [[PersonToken sharedInstance] objectForKey:@"tokenID"]};
     
-    speakerController.dosageData = @[@{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Medicine"}];
+    speakerController.dosageData = @[@{@"picture" : @"http://people.opposingviews.com/DM-Resize/photos.demandstudios.com/getty/article/117/132/87753812.jpg?w=600&h=600&keep_ratio=1", @"name" : @"Medicine"},
+                                     
+            @{@"picture" : @"http://changinghabits.com.au/blogs/medicine.jpg", @"name" : @"Medicine 2"},
+  @{@"picture" : @"http://www.3ders.org/images2014/%E2%80%8Bpharmaceutical-researcher-create-new-shapes-medicine-tablets-3d-printing-00005.jpg", @"name" : @"Medicine 3"}];
+    
     [_tableView reloadData];
     return;
     

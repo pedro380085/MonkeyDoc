@@ -31,6 +31,12 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self buySimplifyButton:nil];
+}
+
 - (BOOL) prefersStatusBarHidden
 {
     return YES;

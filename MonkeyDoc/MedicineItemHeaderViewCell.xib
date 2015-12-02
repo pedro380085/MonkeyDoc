@@ -83,6 +83,9 @@
                                         <state key="normal" title="GET MORE!">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushToPass:" destination="L4s-ft-Wnt" eventType="touchUpInside" id="mOz-cv-htl"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GENERAL INFORMATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h8o-Xb-9bG">
                                         <rect key="frame" x="15" y="0.0" width="290" height="21"/>

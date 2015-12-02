@@ -94,6 +94,9 @@
                     @{@"weekDay" : @"Tuesday", @"hour" : @"14h"}
                     ];
     
+    [self stopLoadingView];
+    [refreshControl endRefreshing];
+    
     [self.tableView reloadData];
     
     return;

@@ -34,7 +34,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = NSLocalizedString(@"Medicines", nil);
     }
     return self;
 }
@@ -77,6 +76,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    self.title = NSLocalizedString(@"Medicines", nil);
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,7 +102,11 @@
             @{@"picture" : @"http://changinghabits.com.au/blogs/medicine.jpg", @"name" : @"Oraquick"},
   @{@"picture" : @"http://www.3ders.org/images2014/%E2%80%8Bpharmaceutical-researcher-create-new-shapes-medicine-tablets-3d-printing-00005.jpg", @"name" : @"Aveeno"}];
     
+    [self stopLoadingView];
+    [refreshControl endRefreshing];
+    
     [_tableView reloadData];
+    
     return;
     
     // Post to server
